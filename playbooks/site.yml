@@ -18,6 +18,11 @@
 # - name: Webserver assignment
 #   import_playbook: ../static-assignments/webservers.yml
 
-  - hosts: lb
+  - hosts: db
   - name: installing db
     import_playbook: ../static-assignments/db.yml
+
+  - hosts: lb
+    name: loadbalancer assigment
+    import_playbook: ../static-assignments/nginx-lb.yml
+    when: load_balancer_is_required
